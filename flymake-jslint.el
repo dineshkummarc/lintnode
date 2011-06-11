@@ -104,7 +104,7 @@ Uses `lintnode-node-program' and `lintnode-location'."
                       temp-file
                       (file-name-directory buffer-file-name)))
          (jslint-url (format "http://127.0.0.1:%d/jslint" lintnode-port)))		       
-    (list lintnode-curl-program (list "--form" (format "\"source=@%s\"" local-file)
+    (list lintnode-curl-program (list "--form" (format "source=@%s" local-file)
                        jslint-url))))
 
 (setq flymake-allowed-file-name-masks

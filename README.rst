@@ -4,7 +4,7 @@ lintnode - a JSLint server for more expedient linting
 This is a modification of the original lintnode which has all the non-core node dependencies removed.
 So no need for express etc. Can be setup on windows if you have http://curl.haxx.se/curl for windows 
 
-This is what my init.el looks like
+This is what my init.el looks (when on windows, since its trickier):
 
 ::
 
@@ -20,8 +20,19 @@ This is what my init.el looks like
            (lambda ()
              (lintnode-hook))) 
 
+ (custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+  '(lintnode-curl-program "c:/Tools/curl")
+  '(lintnode-node-program "c:/node-0.4.7/bin/node")
+  '(lintnode-port 1337))
+
 I use this js2-mode, there are a lot of variants but this one indents properly
 https://github.com/mooz/js2-mode/blame/master/js2-mode.el
+
+I use this js-comint https://github.com/user-1/js-comint on windows, and the original elsewhere.
 
 :Now Original readme continues...:
 
