@@ -4,18 +4,18 @@ lintnode - a JSLint server for more expedient linting
 This is a modification of the original lintnode which has all the non-core node dependencies removed.
 So no need for express etc. Can be setup on windows if you have http://curl.haxx.se/curl for windows 
 
-This is what my init.el looks like
-;;lintnode
-(add-to-list 'load-path "~/.emacs.d/lintnode")
-(require 'flymake-jslint)
-(require 'flymake-cursor)
-(setq lintnode-location "~/.emacs.d/lintnode")
-;; JSLint can be... opinionated
-(setq lintnode-jslint-excludes (list 'nomen 'undef 'plusplus 'onevar 'white))
-;; Start the server when we first open a js file and start checking
-(add-hook 'js2-mode-hook
-          (lambda ()
-            (lintnode-hook))) 
+This is what my init.el looks like::
+ ;;lintnode
+ (add-to-list 'load-path "~/.emacs.d/lintnode")
+ (require 'flymake-jslint)
+ (require 'flymake-cursor)
+ (setq lintnode-location "~/.emacs.d/lintnode")
+ ;; JSLint can be... opinionated
+ (setq lintnode-jslint-excludes (list 'nomen 'undef 'plusplus 'onevar 'white))
+ ;; Start the server when we first open a js file and start checking
+ (add-hook 'js2-mode-hook
+           (lambda ()
+             (lintnode-hook))) 
 
 I use this js2-mode, there are a lot of variants but this one indents properly
 https://github.com/mooz/js2-mode/blame/master/js2-mode.el
