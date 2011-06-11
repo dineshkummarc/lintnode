@@ -1,18 +1,36 @@
 lintnode - a JSLint server for more expedient linting
 =====================================================
 
-I was setting up `flymake-mode`_ with JSLint_, and thinking it was
+This is a modification of the original lintnode which has all the non-core node dependencies removed.
+So no need for express etc. Can be setup on windows if you have http://curl.haxx.se/curl for windows 
+
+This is what my init.el looks like
+;;lintnode
+(add-to-list 'load-path "~/.emacs.d/lintnode")
+(require 'flymake-jslint)
+(require 'flymake-cursor)
+(setq lintnode-location "~/.emacs.d/lintnode")
+;; JSLint can be... opinionated
+(setq lintnode-jslint-excludes (list 'nomen 'undef 'plusplus 'onevar 'white))
+;; Start the server when we first open a js file and start checking
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (lintnode-hook))) 
+
+I use this js2-mode, there are a lot of variants but this one indents properly
+https://github.com/mooz/js2-mode/blame/master/js2-mode.el
+
+Now Original readme continues...
+
+
+(Original I) was setting up `flymake-mode`_ with JSLint_, and thinking it was
 pretty great, but that rhino start-up cost is pretty big for a flymake
 application.  If we just kept JSLint running, wouldn't that be a lot
 faster?
 
-Then I caught a talk on the `node.js`_ server, and saw a way.
+Then (Original guy) caught a talk on the `node.js`_ server, and saw a way.
 
-In my environment, this cuts jslint invocation time in half.
-
-This project also depends on the Express_ framework, with the connect-form
-and haml packages.  I recommend installation with npm_ to manage these
-dependencies.
+In (Original guys) environment, this cuts jslint invocation time in half.
 
 The ``jslint.curl`` script depends on curl, but you can easily
 reproduce it with any other http client.
@@ -20,8 +38,6 @@ reproduce it with any other http client.
 .. _flymake-mode: http://www.emacswiki.org/emacs/FlymakeJavaScript
 .. _JSLint: http://www.jslint.com/
 .. _node.js: http://nodejs.org/
-.. _Express: http://expressjs.com/
-.. _npm: http://npmjs.org/
 
 
 Usage
